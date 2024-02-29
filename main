@@ -1,0 +1,126 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        int op;
+        boolean continuar = true;
+
+        Scanner leitor2 = new Scanner(System.in);
+
+        Livro livro1 = new ebook("Harry Potter",2001, "0001", 50,"JK",1024);
+        Livro livro2 = new livroFisico("Bíblia",1752,"0000",1000,"Jesus",5000);
+
+        ArrayList<Livro> lista = new ArrayList<Livro>();
+
+        while(continuar){
+            System.out.println("1 - Adicionar um livro fisico");
+            System.out.println("2 - Adicionar Ebook");
+            System.out.println("3 - Excluir um livro");
+            System.out.println("4 - Exibir todos os livros");
+            System.out.println("0 - Sair");
+            op = leitor2.nextInt();
+
+            switch (op){
+                case 1:
+                    System.out.println("Adicionar Livro:");
+                    adicionarLF(lista);
+                    break;
+                case 2:
+                    System.out.println("Adicionar Ebook");
+                    adicionarEB(lista);
+                    break;
+                case 3:
+                    System.out.println("Excluir livro");
+                    remover(lista);
+                    break;
+                case 4:
+                    System.out.println("Exibir todos os livros");
+                    exibirLivros(lista);
+                    break;
+                case 0:
+                    System.out.println("Saindo...");
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("Ação inválida! ");
+            }
+        }
+
+
+    }
+    public static void adicionarLF(ArrayList<Livro> lista){
+        Scanner ler = new Scanner(System.in);
+        String titulo, autor, isbn;
+        int ano, qtd_pages;
+        float preco;
+        System.out.println("Titulo: ");
+        titulo = ler.nextLine();
+        System.out.println("Ano: ");
+        ano = ler.nextInt();
+        System.out.println("Isbn: ");
+        isbn = ler.nextLine();
+        System.out.println("Preço: ");
+        preco = ler.nextFloat();
+        System.out.println("Autor: ");
+        autor = ler.nextLine();
+        System.out.println("quantidades de paginas: ");
+        qtd_pages = ler.nextInt();
+
+        lista.add(new livroFisico(titulo,ano,isbn,preco,autor,qtd_pages));
+
+    }
+    public static void adicionarEB(ArrayList<Livro> lista){
+        Scanner ler = new Scanner(System.in);
+        String titulo, autor, isbn;
+        int ano;
+        float preco, tamanho;
+        System.out.println("Titulo: ");
+        titulo = ler.nextLine();
+        System.out.println("Ano: ");
+        ano = ler.nextInt();
+        System.out.println("Isbn: ");
+        isbn = ler.nextLine();
+        System.out.println("Preço: ");
+        preco = ler.nextFloat();
+        System.out.println("Autor: ");
+        autor = ler.nextLine();
+        System.out.println("quantidades de paginas: ");
+        tamanho = ler.nextFloat();
+
+        lista.add(new ebook(titulo, ano,isbn,preco,autor,tamanho));
+    }
+
+    public static void exibirLivros(ArrayList<Livro> lista){
+        for (int i = 0; i < lista.size(); i++){
+            Livro livro = lista.get(i);
+            System.out.println("Título: " + livro.getTitulo());
+        }
+     
+    }
+
+    public static void remover(ArrayList<Livro> lista) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o nome do livro que deseja remover: ");
+        String nomeLivro = scanner.nextLine();
+
+        boolean livroEncontrado = false;
+        for (int i = 0; i < lista.size(); i++) {
+            Livro livro = lista.get(i);
+            if (livro.getTitulo().equalsIgnoreCase(nomeLivro)) {
+                lista.remove(i);
+                System.out.println("Livro \"" + nomeLivro + "\" removido com sucesso.");
+                livroEncontrado = true;
+                break;
+            }
+        }
+
+        if (!livroEncontrado) {
+            System.out.println("Livro \"" + nomeLivro + "\" não encontrado na lista.");
+        }
+    }
+}
