@@ -1,0 +1,24 @@
+public class ebook extends Livro{
+    private float tamanho;
+
+    ebook(String titulo, int ano, String isbn, float preco, String autor, float tamanho){
+        super(titulo, ano, isbn, preco, autor);
+        this.tamanho = tamanho;
+    }
+
+    public float getTamanho(){
+        return  tamanho;
+    }
+    public void setTamanho(float tamanho){
+        this.tamanho = tamanho;
+    }
+
+    public void exibirLivro(){
+        System.out.println("titulo: "+ super.getTitulo());
+        System.out.println("Autor: "+ super.getAutor());
+        System.out.println("isbn: "+ super.getIsbn());
+        System.out.println("Preço: "+ super.getPreco());
+        System.out.println("Ano: "+ super.getAno());
+        System.out.println("Tamanho: "+ getTamanho());
+    }
+}
