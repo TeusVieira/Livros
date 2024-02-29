@@ -1,0 +1,24 @@
+public class livroFisico extends Livro {
+    private int qtdPaginas;
+
+    livroFisico(String titulo, int ano, String isbn, float preco, String autor ,int qtdPaginas){
+        super(titulo, ano,isbn,preco,autor);
+        this.qtdPaginas = qtdPaginas;
+    }
+
+    public int getQtdPaginas(){
+        return qtdPaginas;
+    }
+    public void setQtdPaginas(int qtd){
+        this.qtdPaginas = qtd;
+    }
+
+    public void exibirLivro(){
+        System.out.println("titulo: "+ super.getTitulo());
+        System.out.println("Autor: "+ super.getAutor());
+        System.out.println("isbn: "+ super.getIsbn());
+        System.out.println("Preço: "+ super.getPreco());
+        System.out.println("Ano: "+ super.getAno());
+        System.out.println("Quantidade de páginas: "+ getQtdPaginas());
+    }
+}
